@@ -1,0 +1,40 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+<h1>Create a New Admin Account</h1>
+
+<!-- Display flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="alert-list">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<form action="/register" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+<!-- JavaScript to handle the flash message pop-up -->
+{% if 'Account created successfully. Please log in.' in get_flashed_messages() %}
+    <script>
+        alert("Account Created Successfully! Please log in.");
+    </script>
+{% endif %}
+
+{% endblock %}

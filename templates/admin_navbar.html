@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Navbar Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .top-navbar {
+            background-color: #343a40; /* Dark navbar */
+            height: 60px;
+        }
+
+        .top-navbar h1 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+            display: inline-block;
+            padding: 15px;
+        }
+
+        .top-navbar .logo {
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Sliding Navbar Styling */
+        #mySidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        #mySidenav a {
+            padding: 8px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #mySidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        #openNav {
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <div class="top-navbar d-flex justify-content-between navbar navbar-expand-lg navbar-dark bg-dark">
+        <h1>Quiz Management System</h1>
+        <span id="openNav" onclick="openNav()">&#9776;</span>
+    </div>
+
+    <!-- Sliding Navbar -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{{ url_for('create_teacher_account') }}">Create Teacher Account</a>
+        <a href="{{ url_for('create_student_account') }}">Create Student Account</a>
+        <a href="{{ url_for('accounts') }}">Accounts</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <!-- Page Content -->
+    {% block content %}
+    {% endblock %}
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% extends "admin_navbar.html" %}
+
+{% block content %}
+    <h1 class="text-center">Account Management</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert-list">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% if created_account %}
+    <div class="alert alert-success mt-4">
+        <strong>{{ created_account.role }} account created successfully!</strong>
+        <ul>
+            <li><strong>Full Name:</strong> {{ created_account.full_name }}</li>
+            <li><strong>Email:</strong> {{ created_account.email }}</li>
+            {% if created_account.role == 'Teacher' %}
+            <li><strong>Employee Number:</strong> {{ created_account.employee_number }}</li>
+            {% elif created_account.role == 'Student' %}
+            <li><strong>Enrollment Number:</strong> {{ created_account.enrollment_number }}</li>
+            <li><strong>Batch:</strong> {{ created_account.batch }}</li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <h2 class="mt-5">Teachers</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in teachers %}
+            <tr>
+                <td>{{ teacher.teacher_id }}</td>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="mt-5">Students</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Enrollment Number</th>
+                <th>Name</th>
+                <th>Batch</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.student_id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.batch }}</td>
+                <td>{{ student.email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

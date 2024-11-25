@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attempt Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafc;
+            color: #333;
+        }
+
+        nav {
+            background-color: #007bff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .quiz-details, .quiz-container, .join-quiz-container {
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-submit, .btn-join, .btn-start {
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('student_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('join_quiz_with_code') }}">Join Quiz</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <div class="quiz-container">
+        <h2>{{ quiz.quiz_name }}</h2>
+        <form action="{{ url_for('submit_quiz', quiz_id=quiz.quiz_id) }}" method="POST">
+            {% for question in questions %}
+            <div class="question-block">
+                <p><strong>{{ loop.index }}. {{ question.question_text }}</strong></p>
+                <ul>
+                    <li>
+                        <label>
+                            <input type="radio" name="question_{{ question.question_id }}" value="option1">
+                            {{ question.option1 }}
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="question_{{ question.question_id }}" value="option2">
+                            {{ question.option2 }}
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="question_{{ question.question_id }}" value="option3">
+                            {{ question.option3 }}
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="question_{{ question.question_id }}" value="option4">
+                            {{ question.option4 }}
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+            <div class="btn-submit">
+                <button type="submit" class="btn">Submit Quiz</button>
+            </div>
+        </form>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+
+{% extends "admin_navbar.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center">Admin Dashboard</h2>
+        
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Quiz ID</th>
+                    <th scope="col">Quiz Title</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Start Date & Time</th>
+                    <th scope="col">End Date & Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example row, replace this with dynamic data -->
+                <tr>
+                    <th scope="row">1</th>
+                    <td>QZ123</td>
+                    <td>Maths Quiz</td>
+                    <td>Admin</td>
+                    <td>2024-11-25 10:00</td>
+                    <td>2024-11-25 11:00</td>
+                </tr>
+                <tbody>
+                    {% for quiz in quizzes %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ quiz.id }}</td>
+                        <td>{{ quiz.title }}</td>
+                        <td>{{ quiz.teacher_name }}</td>
+                        <td>{{ quiz.start_time }}</td>
+                        <td>{{ quiz.end_time }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <!-- Add more rows dynamically here -->
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

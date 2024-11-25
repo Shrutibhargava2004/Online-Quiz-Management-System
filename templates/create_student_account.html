@@ -1,0 +1,30 @@
+{% extends "admin_navbar.html" %}
+
+{% block content %}
+<h1 class="text-center mt-3">Create Student Account</h1>
+
+<form action="/admin/create_student_account" method="POST" class="mt-4">
+    <div class="form-group">
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" name="full_name" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="enrollment_number">Enrollment Number</label>
+        <input type="text" id="enrollment_number" name="enrollment_number" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="batch">Batch</label>
+        <input type="text" id="batch" name="batch" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email ID</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Create Account</button>
+</form>
+
+{% endblock %}
