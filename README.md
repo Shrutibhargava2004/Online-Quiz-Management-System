@@ -46,7 +46,7 @@ The **Web-Based Quiz Management System** is a robust and user-friendly platform 
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/quiz-management-system.git
+   git clone https://github.com/Shrutibhargava2004/Online-Quiz-Management-System.git
 2. Set Up Environment:
    Install Python (3.8+ recommended).
    Install dependencies
